@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Shayne van Asperen</authors>
+    <owners>Shayne van Asperen</owners>
+		<licenseUrl>https://github.com/shaynevanasperen/NHibernate.Sessions.Operations/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/shaynevanasperen/NHibernate.Sessions.Operations</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/shaynevanasperen/NHibernate.Sessions.Operations/master/NHibernate.Sessions.Operations.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A query object pattern built on NHibernate.Sessions</description>
+		<language>en-US</language>
+    <tags>NHibernate QueryObject</tags>
+  </metadata>
+</package>
