@@ -1,5 +1,5 @@
 param(
-	$prereleaseVersion = (property prereleaseVersion "beta-2")
+	$prereleaseVersion = (property prereleaseVersion "")
 )
 
 Include-PluginScripts
