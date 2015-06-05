@@ -21,9 +21,9 @@ namespace NHibernate.Sessions.Operations
 		/// </summary>
 		public bool CacheNulls { get; set; }
 		
-		internal string BuildCacheKey(System.Type queryType)
+		internal string BuildCacheKey(string prefix)
 		{
-			var segments = new List<object> { queryType.FullName };
+			var segments = new List<object> { prefix };
 
 			if (VaryBy == null)
 				return string.Join("_", segments);

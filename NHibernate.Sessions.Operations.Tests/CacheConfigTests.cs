@@ -9,10 +9,10 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_with_no_vary_by : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName);
+			result.ShouldEqual(TestCacheKey.Prefix);
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 	}
@@ -21,13 +21,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_with_vary_by_having_only_nulls : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_appended_with_an_underscore_for_each_null_property = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "__");
+			result.ShouldEqual(TestCacheKey.Prefix + "__");
 
 		Establish context = () =>
 			Subject.VaryBy = new { queryParameters.Null, NullToo = queryParameters.Null };
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 		static QueryParameters queryParameters = new QueryParameters { Null = null };
@@ -37,7 +37,7 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_with_vary_by_as_an_object : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_flattened_vary_by_property_values_ordered_by_property_name_joined_by_underscores = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_a_1__Friday_one_two_three_x_y_z_i_ii_iii_£_$_#_first_second");
+			result.ShouldEqual(TestCacheKey.Prefix + "_a_1__Friday_one_two_three_x_y_z_i_ii_iii_£_$_#_first_second");
 
 		Establish context = () =>
 			Subject.VaryBy = new
@@ -52,7 +52,7 @@ namespace NHibernate.Sessions.Operations.Tests
 			};
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 
@@ -71,7 +71,7 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_with_vary_by_as_an_enumerable : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_flattened_vary_by_values_joined_by_underscores = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_a_1__Friday_one_two_three_x_y_z_i_ii_iii_£_$_#_first_second");
+			result.ShouldEqual(TestCacheKey.Prefix + "_a_1__Friday_one_two_three_x_y_z_i_ii_iii_£_$_#_first_second");
 
 		Establish context = () =>
 			Subject.VaryBy = new[]
@@ -86,7 +86,7 @@ namespace NHibernate.Sessions.Operations.Tests
 			};
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 
@@ -105,13 +105,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_when_vary_by_as_a_string_only : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_vary_by_string_joined_with_an_underscore = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_varyby");
+			result.ShouldEqual(TestCacheKey.Prefix + "_varyby");
 
 		Establish context = () =>
 			Subject.VaryBy = "varyby";
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 	}
@@ -120,13 +120,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_when_vary_by_is_a_primitive_type : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_vary_by_value_joined_with_an_underscore = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_1");
+			result.ShouldEqual(TestCacheKey.Prefix + "_1");
 
 		Establish context = () =>
 			Subject.VaryBy = 1;
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 	}
@@ -135,13 +135,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_when_vary_by_is_an_enum_value : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_vary_by_value_joined_with_an_underscore = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_" + TestEnum.EnumValue);
+			result.ShouldEqual(TestCacheKey.Prefix + "_" + TestEnum.EnumValue);
 
 		Establish context = () =>
 			Subject.VaryBy = TestEnum.EnumValue;
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 
@@ -155,13 +155,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_when_vary_by_is_a_datetime : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_vary_by_string_representation_joined_with_an_underscore = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_" + DateTime.Today);
+			result.ShouldEqual(TestCacheKey.Prefix + "_" + DateTime.Today);
 
 		Establish context = () =>
 			Subject.VaryBy = DateTime.Today;
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 	}
@@ -170,13 +170,13 @@ namespace NHibernate.Sessions.Operations.Tests
 	class When_building_cache_key_when_vary_by_is_an_object_without_public_properties : WithSubject<CacheConfig>
 	{
 		It should_return_the_query_type_name_and_the_vary_by_tostring_value_joined_with_an_underscore = () =>
-			result.ShouldEqual(typeof(TestDatabaseQuery).FullName + "_" + guid);
+			result.ShouldEqual(TestCacheKey.Prefix + "_" + guid);
 
 		Establish context = () =>
 			Subject.VaryBy = guid;
 
 		Because of = () =>
-			result = Subject.BuildCacheKey(typeof(TestDatabaseQuery));
+			result = Subject.BuildCacheKey(TestCacheKey.Prefix);
 
 		static string result;
 		static Guid guid = Guid.NewGuid();
@@ -192,11 +192,8 @@ namespace NHibernate.Sessions.Operations.Tests
 		public IEnumerable<IEnumerable<string>> NestedEnumerable { get; set; }
 	}
 
-	class TestDatabaseQuery : DatabaseQuery<int>
+	class TestCacheKey
 	{
-		public override int Execute(ISessionManager sessionManager)
-		{
-			throw new NotSupportedException();
-		}
+		public const string Prefix = "cachePrefix";
 	}
 }
