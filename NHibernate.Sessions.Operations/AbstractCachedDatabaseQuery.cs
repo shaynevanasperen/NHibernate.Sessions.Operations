@@ -8,7 +8,7 @@ namespace NHibernate.Sessions.Operations
 
 		protected abstract T QueryDatabase(ISessionManager sessionManager);
 
-		public virtual string CacheKeyPrefix
+		protected virtual string CacheKeyPrefix
 		{
 			get { return GetType().FullName; }
 		}
