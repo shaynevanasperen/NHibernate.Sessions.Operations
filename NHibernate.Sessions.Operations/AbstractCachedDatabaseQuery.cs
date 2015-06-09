@@ -8,6 +8,11 @@ namespace NHibernate.Sessions.Operations
 
 		protected abstract T QueryDatabase(ISessionManager sessionManager);
 
+		protected virtual string CacheKeyPrefix
+		{
+			get { return GetType().FullName; }
+		}
+
 		protected T GetDatabaseResult(ISessionManager sessionManager, IDatabaseQueryCache databaseQueryCache = null)
 		{
 			var cacheConfig = CacheConfig.None;
@@ -16,7 +21,7 @@ namespace NHibernate.Sessions.Operations
 			if (databaseQueryCache == null || cacheConfig.AbsoluteDuration == TimeSpan.Zero)
 				return QueryDatabase(sessionManager);
 
-			return databaseQueryCache.Get(() => QueryDatabase(sessionManager), cacheConfig.BuildCacheKey(GetType()), cacheConfig.AbsoluteDuration, cacheConfig.CacheNulls);
+			return databaseQueryCache.Get(() => QueryDatabase(sessionManager), cacheConfig.BuildCacheKey(CacheKeyPrefix), cacheConfig.AbsoluteDuration, cacheConfig.CacheNulls);
 		}
 	}
 }
