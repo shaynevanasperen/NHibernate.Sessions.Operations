@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Quarks.ObjectExtensions;
 
 namespace NHibernate.Sessions.Operations
 {
@@ -28,45 +28,14 @@ namespace NHibernate.Sessions.Operations
 			if (VaryBy == null)
 				return string.Join("_", segments);
 
-			segments.AddRange(flatten(VaryBy));
+			segments.AddRange(VaryBy.Flatten());
 
 			return string.Join("_", segments);
-		}
-
-		static IEnumerable<object> flatten(object source)
-		{
-			if (source.CanBeRepresentedAsString())
-				yield return source;
-			else
-			{
-				foreach (var flattened in source.ToEnumerable().SelectMany(flatten)) {
-					yield return flattened;
-				}
-			}
 		}
 
 		internal static CacheConfig None
 		{
 			get { return new CacheConfig { AbsoluteDuration = TimeSpan.Zero }; }
-		}
-	}
-
-	static class Extensions
-	{
-		internal static bool CanBeRepresentedAsString(this object source)
-		{
-			return source == null ||
-				source is string || 
-				source is Enum ||
-				source is DateTime ||
-				source.GetType().IsPrimitive || 
-				!source.GetType().GetProperties().Any(); //NOTE: if there are no public properties, assume that the ToString() value is unique enough
-		}
-
-		internal static IEnumerable<object> ToEnumerable(this object source)
-		{
-			var sourceEnumerable = source as IEnumerable<object>;
-			return sourceEnumerable ?? source.GetType().GetProperties().OrderBy(x => x.Name).Select(x => x.GetValue(source, null));
 		}
 	}
 }

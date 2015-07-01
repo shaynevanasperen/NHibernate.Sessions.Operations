@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Machine.Fakes;
 using Machine.Specifications;
 
@@ -26,6 +27,9 @@ namespace NHibernate.Sessions.Operations.Tests
 			Subject.Enum = other.Enum = DayOfWeek.Friday;
 			Subject.String = other.String = "string";
 			Subject.Object = other.Object = new object();
+			var item = new object();
+			Subject.Collection = new[] { item };
+			other.Collection = new[] { item };
 		};
 
 		static TestDatabaseOperation1 other = new TestDatabaseOperation1();
@@ -111,6 +115,7 @@ namespace NHibernate.Sessions.Operations.Tests
 		public string String { get; set; }
 		public DayOfWeek Enum { get; set; }
 		public object Object { get; set; }
+		public IEnumerable<object> Collection { get; set; }
 	}
 
 	class TestDatabaseOperation2 : DatabaseOperation

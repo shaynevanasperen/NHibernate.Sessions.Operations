@@ -78,7 +78,14 @@
     <Compile Include="IDatabaseQueryCache.cs" />
     <Compile Include="IDatabases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quarks\AssertComparer.cs" />
+    <Compile Include="Quarks\GenericExtensions\IsEqualToDefault.cs" />
+    <Compile Include="Quarks\GenericExtensions\QuasiEquals.cs" />
+    <Compile Include="Quarks\ObjectExtensions\CanBeRepresentedAsString.cs" />
+    <Compile Include="Quarks\ObjectExtensions\Flatten.cs" />
+    <Compile Include="Quarks\ObjectExtensions\ToEnumerable.cs" />
     <Compile Include="Quarks\SystemTime.cs" />
+    <Compile Include="Quarks\TypeExtensions\IsNullable.cs" />
     <Compile Include="TransformedCachedDatabaseQuery.cs">
       <DependentUpon>ICachedDatabaseQuery.cs</DependentUpon>
     </Compile>

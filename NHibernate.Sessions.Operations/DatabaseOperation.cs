@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using NHibernate.Util;
+using Quarks.GenericExtensions;
+using Quarks.ObjectExtensions;
 
 namespace NHibernate.Sessions.Operations
 {
@@ -34,27 +35,13 @@ namespace NHibernate.Sessions.Operations
 
 				if (ReferenceEquals(thisValue, otherValue)) return true;
 
-				return thisValue != null && thisValue.Equals(otherValue);
+				return thisValue != null && thisValue.QuasiEquals(otherValue);
 			});
 		}
 
 		public override int GetHashCode()
 		{
-			// ReSharper disable NonReadonlyFieldInGetHashCode
-			var publicPropertyValues = GetType()
-				.GetProperties(BindingFlags.Instance | BindingFlags.Public)
-				.Select(x => x.GetValue(this, null))
-				.Where(x => x != null);
-			// ReSharper restore NonReadonlyFieldInGetHashCode
-
-			unchecked
-			{
-				var hash = 17;
-				// ReSharper disable once AccessToModifiedClosure
-				publicPropertyValues.ForEach(x => hash = hash * 23 + x.GetHashCode());
-				hash = hash * 23 + GetType().GetHashCode();
-				return hash;
-			}
+			return string.Join("|", this.ToEnumerable()).GetHashCode();
 		}
 	}
 }
