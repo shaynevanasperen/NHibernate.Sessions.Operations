@@ -1,16 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Sessions.Operations", "NHibernate.Sessions.Operations\NHibernate.Sessions.Operations.csproj", "{4972263E-C593-48E3-A7E7-C1990A29FF32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Sessions.Operations.Tests", "NHibernate.Sessions.Operations.Tests\NHibernate.Sessions.Operations.Tests.csproj", "{6DC8BF89-AEF2-4928-BAD8-79435E567D7F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D82474AC-F881-46DF-AAF8-33272DD0FA4E}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notice", "notice", "{A8E29707-F63C-4BFA-BC78-57E0DD2B28F5}"
 	ProjectSection(SolutionItems) = preProject
