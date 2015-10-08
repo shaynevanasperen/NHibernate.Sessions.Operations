@@ -1,4 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3p47e7ky2w2i3tnq?svg=true)](https://ci.appveyor.com/project/shaynevanasperen/nhibernate-sessions-operations)
+[![NuGet Version](http://img.shields.io/nuget/v/NHibernate.Sessions.Operations.svg?style=flat)](https://www.nuget.org/packages/NHibernate.Sessions.Operations)
+[![NuGet Downloads](http://img.shields.io/nuget/dt/NHibernate.Sessions.Operations.svg?style=flat)](https://www.nuget.org/packages/NHibernate.Sessions.Operations)
 NHibernate.Sessions.Operations
 ==============================
 
